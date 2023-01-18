@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && tsc",
+    "build:ci": "tsc --noEmit",
     "clean": "rimraf ./dist",
     "lint": "eslint . --ext .ts",
     "postinstall": "is-ci || husky install"
