@@ -1,21 +1,7 @@
-# typescript-base
+# ClassifyTheWeb
 
-A typescript repository pre-configured for code style linting and commit linting.
+A website classification database application using typescript and redis.
 
-## Usage
+This project is in early development, and any API's provided should not be assumed to be stable.
 
-Clone the repo into your project folder
-
-```sh-session
-git clone https://github.com/CheesyGamer77/typescript-base .
-```
-
-Edit the contents of `package.json` (namely `name`, `description`, `repository`, and `author`)
-
-Setup husky git hooks
-
-```sh-session
-npx husky install
-```
-
-Get coding!
+Commits on `main` are nightly commits, and are not guaranteed to be bug-free nor compile error-free.
