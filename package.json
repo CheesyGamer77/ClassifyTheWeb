@@ -1,7 +1,7 @@
 {
-  "name": "example",
+  "name": "classify-the-web",
   "version": "1.0.0",
-  "description": "EXAMPLE",
+  "description": "Web classification database application using typescript and redis",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/CheesyGamer77/typescript-base",
