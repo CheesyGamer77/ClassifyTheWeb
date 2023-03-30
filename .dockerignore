@@ -1,0 +1,10 @@
+.github/**/*
+.husky/**/*
+docs/**/*
+.commitlintrc
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore
+LICENSE
+README.md
