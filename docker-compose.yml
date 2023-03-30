@@ -1,0 +1,20 @@
+services:
+    api:
+        image: node:19
+        user: node
+        working_dir: /home/node/app
+        volumes:
+            - ./:/home/node/app
+        depends_on:
+            - redis
+        ports:
+            - "3003:3000"
+        command: yarn start
+
+    redis:
+        image: redis:latest
+        restart: unless-stopped
+
+networks:
+    default:
+        name: 472-project
