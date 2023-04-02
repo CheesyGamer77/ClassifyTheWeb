@@ -8,6 +8,10 @@ lib-cov
 *.gz
 *.swp
 
+# redis
+*.aof
+*.rdb
+
 pids
 logs
 results

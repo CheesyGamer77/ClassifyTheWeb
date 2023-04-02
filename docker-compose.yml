@@ -9,11 +9,15 @@ services:
             - redis
         ports:
             - "3003:3000"
-        command: yarn start
+        command: yarn start:nobuild
 
     redis:
         image: redis:latest
         restart: unless-stopped
+        expose:
+            - "6379"
+        volumes:
+            - ./data:/data
 
 networks:
     default:
