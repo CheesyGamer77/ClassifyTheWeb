@@ -10,6 +10,7 @@ html {
 
     color: var(--text-primary);
     background-color: var(--background-primary);
+    border-color: var(--text-secondary);
 
     --padding-standard-width: 1rem;
     margin: var(--padding-standard-width);
@@ -27,5 +28,6 @@ html {
         --background-secondary: #909090;
         color: var(--text-primary);
         background-color: var(--background-primary);
+        border-color: var(--text-secondary);
     }
 }
