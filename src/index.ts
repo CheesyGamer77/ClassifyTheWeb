@@ -1,5 +1,5 @@
 import express from 'express';
-import { addCategoryType, fetchCategoryTypes } from './db';
+import { addCategoryType, checkAdminAuth, fetchCategoryTypes } from './db';
 
 const app = express().use(express.json());
 
@@ -12,8 +12,12 @@ app.route('/categories')
         const body = await fetchCategoryTypes();
         await res.status(200).json(body);
     })
-    // TODO: Require admin auth
     .post(async (req, res) => {
+        const is_admin = await checkAdminAuth(req.headers.authorization);
+        if (!is_admin) {
+            return await res.sendStatus(401);
+        }
+
         const add_results = await addCategoryType(req.body.name);
         const res_body = { id: add_results.id, name: req.body.name };
         if (!add_results.is_new) {

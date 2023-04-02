@@ -71,3 +71,14 @@ export async function fetchCategoryTypes(): Promise<SiteCategory[]> {
             return { id: obj.score, name: obj.value };
         });
 }
+
+/**
+ * Returns whether a given authorization header value is a valid admin key or not.
+ * @param authorization The authorization header value.
+ * @returns Whether the given header value is a valid admin key.
+ */
+export async function checkAdminAuth(authorization?: string) {
+    if (!authorization) return false;
+
+    return await redis.sIsMember('admin_keys', authorization);
+}
