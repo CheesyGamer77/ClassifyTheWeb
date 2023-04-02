@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;display=swap");
+
+:root {
+    --text-primary: #ECECEC;
+    --text-secondary: #909090;
+    --background-primary: #181818;
+    --background-secondary: #4b4b4b;
+    --emphasis-primary: #EC63C5;
+    --emphasis-secondary: #B93092;
+    color: var(--text-primary);
+    background-color: var(--background-primary);
+
+    --padding-standard-width: 1rem;
+
+    font-size: 16px;
+    font-family: "Open Sans";
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --text-primary: #181818;
+        --text-secondary: #4b4b4b;
+        --background-primary: #ECECEC;
+        --background-secondary: #909090;
+        color: var(--text-primary);
+        background-color: var(--background-primary);
+    }
+}
