@@ -9,7 +9,7 @@ services:
             - redis
         ports:
             - "3003:3000"
-        command: yarn start
+        command: yarn start:nobuild
 
     redis:
         image: redis:latest
