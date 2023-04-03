@@ -31,3 +31,7 @@ html {
         border-color: var(--text-secondary);
     }
 }
+
+.defaultHidden {
+    visibility: hidden;
+}
