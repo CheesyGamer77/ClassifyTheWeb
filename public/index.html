@@ -108,6 +108,12 @@
                     }
                 });
                 failed = !response.ok;
+
+                if (response.status === 401) {
+                    addLog("A valid admin key is required to submit site classifications");
+                    return;
+                }
+
                 data = await response.json();
 
                 if (response.status === 409) {
