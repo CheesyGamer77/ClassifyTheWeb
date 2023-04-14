@@ -64,6 +64,33 @@
             const list = data.map(category => `• ${category.id}: ${category.name}`).join("<br>");
             addLog(`Found ${data.length} stored categories:<br>${list}`);
         }
+
+        async function showSiteClassification() {
+            let failed = false;
+            let data;
+            const domain = document.getElementById("domainCheckInput").value;
+            try {
+                const params = new URLSearchParams({ domain });
+                const response = await fetch(`https://472.cheesygamer77.pw/api/sites?${params.toString()}`);
+                if (response.status === 404) {
+                    addLog(`No classification found for ${domain}`);
+                    return;
+                }
+
+                failed = !response.ok;
+                data = await response.json();
+            }
+            catch (ignored) {
+                failed = true;
+            }
+
+            if (failed) {
+                addLog(`Received error response while attempting to fetch site classification. The site is likely not classified.`);
+                return;
+            }
+
+            addLog(`Classification for ${domain}: ${data['category']}`)
+        }
     </script>
 
     <title>Classify The Web</title>
@@ -79,5 +106,8 @@
 
     <button id="checkApiButton" onclick="checkApi()">Check API Health</button>
     <button class="defaultHidden" onclick="showCategoryTypes()">Show Site Category Types</button>
+    <br><br>
+    <input id="domainCheckInput" type="text" class="defaultHidden" placeholder="Enter a domain to check">
+    <button class="defaultHidden" onclick="showSiteClassification()">Check Domain</button>
 </body>
 </html>
