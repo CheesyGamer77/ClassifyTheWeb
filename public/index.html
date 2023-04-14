@@ -102,7 +102,8 @@
                 const response = await fetch("https://472.cheesygamer77.pw/api/sites", {
                     method: "POST",
                     headers: {
-                        Authorization: document.getElementById("adminKeyInput").value
+                        Authorization: document.getElementById("adminKeyInput").value,
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ domain, category })
                 });
@@ -110,6 +111,7 @@
 
                 if (response.status === 400) {
                     addLog("Got a 400 bad request response");
+                    return;
                 }
 
                 if (response.status === 401) {
