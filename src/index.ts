@@ -29,7 +29,7 @@ app.route('/categories')
 
 app.route('/sites')
     .get(async (req, res) => {
-        const results = await fetchSiteClassification(req.body.domain);
+        const results = await fetchSiteClassification(req.query.domain as string);
         const { exists, data } = results;
         if (!exists) {
             return await res.sendStatus(404);
