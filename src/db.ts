@@ -124,7 +124,7 @@ export async function fetchSiteClassification(domain: string) {
         exists,
         data: {
             domain: existing_data['domain'],
-            cateory: parseInt(existing_data['category']),
+            category: parseInt(existing_data['category']),
             added_at: parseInt(existing_data['added_at'])
         }
     };
