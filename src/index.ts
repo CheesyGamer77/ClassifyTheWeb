@@ -54,6 +54,8 @@ app.route('/sites')
         if (!results.is_new) {
             return await res.status(409).json(results.data);
         }
+
+        return await res.status(200).json(results.data);
     });
 
 app.listen(3000, () => console.log('Server started'));
