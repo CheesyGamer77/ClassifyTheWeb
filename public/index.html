@@ -96,18 +96,21 @@
             let failed = false;
             let data;
             const domain = document.getElementById("domainInput").value;
+            const category = document.getElementById("categoryInput").value;
+            addLog(`Submitting classification for ${domain}: ${category}`);
             try {
                 const response = await fetch("https://472.cheesygamer77.pw/api/sites", {
                     method: "POST",
                     headers: {
                         Authorization: document.getElementById("adminKeyInput").value
                     },
-                    body: {
-                        domain,
-                        category: document.getElementById("categoryInput").value
-                    }
+                    body: JSON.stringify({ domain, category })
                 });
                 failed = !response.ok;
+
+                if (response.status === 400) {
+                    addLog("Got a 400 bad request response");
+                }
 
                 if (response.status === 401) {
                     addLog("A valid admin key is required to submit site classifications");
