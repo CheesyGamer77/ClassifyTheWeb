@@ -43,3 +43,6 @@ dist/**/*
 
 # Ignore yarn.lock
 yarn.lock
+
+data/*.json
+data/*.txt
