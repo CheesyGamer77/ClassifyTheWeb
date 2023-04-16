@@ -25,13 +25,13 @@ Returns a 200 OK response if the API server is online and available
 
 Get all currently stored category IDs and names.
 
-Returns a 200 OK response on success. Returns an array of [Site Categories](#site-category).
+Returns a 200 OK response with an array of [Site Categories](#site-category).
 
 ### POST `/categories`
 
 Create a new category by name.
 
-Returns a 200 OK response on success. Returns a [Site Categories](#site-category).
+Returns a 200 OK response with the created [Site Category](#site-category).
 
 Possible error responses include:
 
@@ -46,18 +46,18 @@ Possible error responses include:
 
 Find a site's category and when it was added.
 
-Returns a 200 OK response. Returns a [Site Classification](#site-classification).
+Returns a 200 OK response with the found [Site Classification](#site-classification).
 
 Possible error responses include:
 | Code | Reason |
 | --- | --- |
-| 404 | The provided category ID is not assigned |
+| 404 | The provided domain does not have an assigned category |
 
 ### POST `/sites`
 
 Create a new classification for a given site.
 
-Returns a 200 OK response. Returns a [Site Classification](#site-classification).
+Returns a 200 OK response with the created [Site Classification](#site-classification).
 
 Possible error responses include:
 | Code | Reason |
