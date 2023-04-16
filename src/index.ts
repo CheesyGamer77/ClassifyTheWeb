@@ -1,7 +1,7 @@
 import express from 'express';
 import { addCategoryType, upsertSiteClassification, checkAdminAuth, fetchCategoryTypes, isValidCategoryId, fetchSiteClassification, bulkUpdateSiteClassification } from './db';
 
-const app = express().use(express.json());
+const app = express().use(express.json({ limit: '50mb' }));
 
 app.get('/check', async (_, res) => {
     res.sendStatus(200);
