@@ -44,9 +44,6 @@ app.route('/sites')
         }
 
         // ensure the provided category is valid
-        // this is stupid. in a sane language, no method that returns a number type
-        // would ever return a type signifying that it's not a number. But this is
-        // JavaScript: where "Not a Number" IS in fact a number
         const category_id = parseInt(req.body.category);
         if (isNaN(category_id)) {
             return await res.sendStatus(400);
