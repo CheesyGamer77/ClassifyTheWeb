@@ -1,5 +1,5 @@
 import express from 'express';
-import { addCategoryType, upsertSiteClassification, checkAdminAuth, fetchCategoryTypes, isValidCategoryId, fetchSiteClassification } from './db';
+import { addCategoryType, upsertSiteClassification, checkAdminAuth, fetchCategoryTypes, isValidCategoryId, fetchSiteClassification, bulkUpdateSiteClassification } from './db';
 
 const app = express().use(express.json());
 
@@ -46,6 +46,20 @@ app.route('/sites')
         if (!results.is_new) return await res.status(409).json(results.data);
 
         await res.status(200).json(results.data);
+    })
+    .put(async (req, res) => {
+        const is_admin = await checkAdminAuth(req.headers.authorization);
+        if (!is_admin) return await res.sendStatus(401);
+
+        const category_id = parseInt(req.body.category);
+        if (isNaN(category_id)) return await res.sendStatus(400);
+
+        const is_valid_category = await isValidCategoryId(category_id);
+        if (!is_valid_category) return await res.sendStatus(400);
+
+        const results = await bulkUpdateSiteClassification(req.body.domains, category_id);
+
+        await res.status(200).json(results);
     });
 
 app.listen(3000, () => console.log('Server started'));

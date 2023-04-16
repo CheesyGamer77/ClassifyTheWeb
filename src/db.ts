@@ -160,3 +160,22 @@ export async function upsertSiteClassification(domain: string, category_id: numb
         };
     }
 }
+
+export async function bulkUpdateSiteClassification(domains: string[], category_id: number) {
+    const domain_set = new Set(domains);
+    const multi = await redis.multi();
+
+    for (const domain of domain_set) {
+        multi.hSet(getSiteKey(domain), {
+            domain,
+            category: category_id,
+            added_at: Date.now()
+        });
+    }
+
+    await multi.exec();
+    return {
+        domains: Array.from(domain_set),
+        category: category_id
+    };
+}
