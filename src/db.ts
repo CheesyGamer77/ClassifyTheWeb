@@ -35,10 +35,9 @@ async function fetchNextCategoryId() {
  * @param name The name to use for the category.
  */
 export async function addCategoryType(name: string): Promise<AddCategoryResults> {
-    // check if the category name actually exists so that
-    // we don't accidentally override the id value
     const existing_id = await redis.zScore('categories', name);
-    if (existing_id == null) {
+    const is_new = existing_id == null;
+    if (is_new) {
         const id = await fetchNextCategoryId();
         await redis.multi()
             .zAdd('categories', {
@@ -48,14 +47,11 @@ export async function addCategoryType(name: string): Promise<AddCategoryResults>
             .incr('next_category_id')
             .exec();
 
-        return {
-            is_new: true,
-            id
-        };
+        return { is_new, id };
     }
 
     return {
-        is_new: false,
+        is_new,
         id: existing_id
     };
 }
@@ -114,9 +110,7 @@ export async function fetchSiteClassification(domain: string) {
     const key = getSiteKey(domain);
     const exists = await classificationExists(domain);
     if (!exists) {
-        return {
-            exists
-        };
+        return { exists };
     }
 
     const existing_data = await redis.hGetAll(key);
