@@ -161,6 +161,14 @@ export async function upsertSiteClassification(domain: string, category_id: numb
     }
 }
 
+/**
+ * Updates a list of domains to a particular category.
+ *
+ * Duplicate domain entries will be ignored.
+ * @param domains An array of domains to set the classification of.
+ * @param category_id The category to set for each of the domains.
+ * @returns The array of domains, and the category.
+ */
 export async function bulkUpdateSiteClassification(domains: string[], category_id: number) {
     const domain_set = new Set(domains);
     const multi = await redis.multi();

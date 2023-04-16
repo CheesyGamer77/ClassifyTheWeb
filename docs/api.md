@@ -65,3 +65,9 @@ Possible error responses include:
 | 400 | The provided category ID is invalid |
 | 401 | The client did not authenticate with their admin key properly |
 | 409 | A classification already exists for that site |
+
+### PUT `/sites`
+
+Bulk updates the classification for an array of sites.
+
+Returns a 200 OK response with the array of domains and the category assigned.
